@@ -46,7 +46,7 @@ public class PersonDAOImpl implements PersonDAO {
             person.setPhone(resultSet.getString(3));
             person.setEmail(resultSet.getString(4));
         }catch (SQLException ex){
-            log.error("SqlEx"+ex);
+            log.error(ex);
         }finally{
             this.closePreparedStatement(preparedStatement);
         }

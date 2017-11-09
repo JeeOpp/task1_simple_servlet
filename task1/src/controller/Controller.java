@@ -48,7 +48,7 @@ public class Controller extends HttpServlet {
 
             log.info("success");
         }catch (SQLException ex){
-            log.error("SqlEx "+ex);
+            log.error(ex);
         }
     }
 }
