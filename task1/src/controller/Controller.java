@@ -30,11 +30,11 @@ public class Controller extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
 
-        ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        Service service = serviceFactory.getService();
-
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
+
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        Service service = serviceFactory.getService();
         
         Person person;
         try {
