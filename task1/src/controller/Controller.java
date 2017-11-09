@@ -8,15 +8,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import org.apache.log4j.*;
 
 /**
  * Created by DNAPC on 08.11.2017.
  */
 public class Controller extends HttpServlet {
+    private static final Logger log = Logger.getLogger(Controller.class.getClass());
+
     public Controller() {
         super();
     }
@@ -44,8 +45,10 @@ public class Controller extends HttpServlet {
             req.setAttribute("phone", person.getPhone());
             req.setAttribute("email", person.getEmail());
             req.getRequestDispatcher("/table.jsp").forward(req,resp);
+
+            log.info("success");
         }catch (SQLException ex){
-            ex.printStackTrace();
+            log.error("SqlEx "+ex);
         }
     }
 }

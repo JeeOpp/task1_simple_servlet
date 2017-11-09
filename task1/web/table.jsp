@@ -29,10 +29,10 @@
            <th>e-mail</th>
        </tr>
        <tr>
-           <th><%= request.getAttribute("name")%> </th>
-           <th><%= request.getAttribute("surname")%> </th>
-           <th><%= request.getAttribute("phone")%> </th>
-           <th><%= request.getAttribute("email")%> </th>
+           <td><%= request.getAttribute("name")%> </td>
+           <td><%= request.getAttribute("surname")%> </td>
+           <td><%= request.getAttribute("phone")%> </td>
+           <td><%= request.getAttribute("email")%> </td>
        </tr>
    </table>
 </body>

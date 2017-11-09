@@ -12,7 +12,6 @@
     <title>Welcome</title>
   </head>
   <body>
-  <br/>
     <form action="Controller" method="post">
       Name: <input type="text" name="name" value="Ivan"><br/>
       Surname: <input type="text" name="surname" value="Ivanov"><br/>

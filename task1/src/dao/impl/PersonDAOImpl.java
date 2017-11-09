@@ -3,6 +3,7 @@ package dao.impl;
 import dao.PersonDAO;
 import dao.WrapperConnector;
 import entity.Person;
+import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
  * Created by DNAPC on 09.11.2017.
  */
 public class PersonDAOImpl implements PersonDAO {
+    private static final Logger log = Logger.getLogger(PersonDAOImpl.class);
     private WrapperConnector connector;
 
     public PersonDAOImpl() {
@@ -44,7 +46,7 @@ public class PersonDAOImpl implements PersonDAO {
             person.setPhone(resultSet.getString(3));
             person.setEmail(resultSet.getString(4));
         }catch (SQLException ex){
-            ex.printStackTrace();
+            log.error("SqlEx"+ex);
         }finally{
             this.closePreparedStatement(preparedStatement);
         }
