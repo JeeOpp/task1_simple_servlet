@@ -1,0 +1,57 @@
+package dao.impl;
+
+import dao.PersonDAO;
+import dao.WrapperConnector;
+import entity.Person;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * Created by DNAPC on 09.11.2017.
+ */
+public class PersonDAOImpl implements PersonDAO {
+    private WrapperConnector connector;
+
+    public PersonDAOImpl() {
+        this.connector = new WrapperConnector();
+    }
+
+    public PersonDAOImpl(WrapperConnector connector){
+        this.connector = connector;
+    }
+
+    public void close() {
+        connector.closeConnection();
+    }
+
+    @Override
+    public Person findPerson(String ... args) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Person person = null;
+        try {
+            preparedStatement = connector.getPreparedStatement();
+            preparedStatement.setString(1, args[0]);
+            preparedStatement.setString(2, args[1]);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            person = new Person();
+
+            resultSet.next();
+            person.setName(resultSet.getString(1));
+            person.setSurname(resultSet.getString(2));
+            person.setPhone(resultSet.getString(3));
+            person.setEmail(resultSet.getString(4));
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            this.closePreparedStatement(preparedStatement);
+        }
+        return person;
+    }
+
+    private void closePreparedStatement(PreparedStatement preparedStatement) {
+        connector.closePreparedStatement(preparedStatement);
+    }
+}
