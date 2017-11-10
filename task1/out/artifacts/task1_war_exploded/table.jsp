@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>Table</title>
     <style type="text/css">
         table {
@@ -21,6 +21,7 @@
     </style>
 </head>
 <body>
+   <jsp:useBean id="person" class = "entity.PersonBean" scope="request"/>
    <table>
        <tr>
            <th>Name</th>
@@ -29,10 +30,10 @@
            <th>e-mail</th>
        </tr>
        <tr>
-           <td><%= request.getAttribute("name")%> </td>
-           <td><%= request.getAttribute("surname")%> </td>
-           <td><%= request.getAttribute("phone")%> </td>
-           <td><%= request.getAttribute("email")%> </td>
+           <td>${person.name}</td>
+           <td>${person.surname}</td>
+           <td>${person.phone}</td>
+           <td>${person.email}</td>
        </tr>
    </table>
 </body>

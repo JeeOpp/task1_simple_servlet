@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.PersonDAO;
 import dao.WrapperConnector;
-import entity.Person;
+import entity.PersonBean;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -29,16 +29,16 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public Person findPerson(String ... args) throws SQLException {
+    public PersonBean findPerson(String ... args) throws SQLException {
         PreparedStatement preparedStatement = null;
-        Person person = null;
+        PersonBean person = null;
         try {
             preparedStatement = connector.getPreparedStatement();
             preparedStatement.setString(1, args[0]);
             preparedStatement.setString(2, args[1]);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            person = new Person();
+            person = new PersonBean();
 
             resultSet.next();
             person.setName(resultSet.getString(1));

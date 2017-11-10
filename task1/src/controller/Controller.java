@@ -1,6 +1,6 @@
 package controller;
 
-import entity.Person;
+import entity.PersonBean;
 import service.Service;
 import service.ServiceFactory;
 
@@ -37,13 +37,12 @@ public class Controller extends HttpServlet {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         Service service = serviceFactory.getService();
         
-        Person person;
+        PersonBean person;
+
         try {
             person = service.findPerson(name, surname);
-            req.setAttribute("name", person.getName());
-            req.setAttribute("surname", person.getSurname());
-            req.setAttribute("phone", person.getPhone());
-            req.setAttribute("email", person.getEmail());
+
+            req.setAttribute("person", person);
             req.getRequestDispatcher("/table.jsp").forward(req,resp);
 
             log.info("success");

@@ -3,13 +3,13 @@ package entity;
 /**
  * Created by DNAPC on 08.11.2017.
  */
-public class Person {
+public class PersonBean {
     private String name;
     private String surname;
     private String phone;
     private String email;
 
-    public Person(){}
+    public PersonBean(){}
 
     public String getName() {
         return name;
